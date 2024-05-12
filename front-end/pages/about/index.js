@@ -1,22 +1,9 @@
-// icons
-import {
-  FaHtml5,
-  FaCss3,
-  FaJs,
-  FaReact,
-  FaWordpress,
-  FaFigma,
-} from "react-icons/fa";
+import { FaHtml5, FaCss3, FaJs, FaReact, FaWordpress, FaFigma } from 'react-icons/fa';
+import { SiNextdotjs, SiFramer, SiAdobexd, SiAdobephotoshop } from 'react-icons/si';
+import Circles from '../../components/Circles';
+import Avatar from '../../components/Avatar';
+import { useState } from 'react';
 
-import {
-  SiNextdotjs,
-  SiFramer,
-  SiAdobexd,
-  SiAdobephotoshop,
-} from "react-icons/si";
-
-
-//  data
 const aboutData = [
   {
     title: 'skills',
@@ -89,7 +76,13 @@ const aboutData = [
 ];
 
 const About = () => {
-  return <div>About</div>;
+  const [index, setIndex] = useState(0);
+
+  return (
+    <div>
+      <Circles />
+    </div>
+  );
 };
 
 export default About;

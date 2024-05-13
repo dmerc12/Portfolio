@@ -62,20 +62,20 @@ const aboutData = [
     title: 'credentials',
     info: [
       {
-        title: 'Honors Diploma - Blanchard High School',
-        stage: '2016',
-      },
-      {
-        title: 'Associate Degree - Oklahoma City Community College',
-        stage: '2020',
+        title: 'Certified Cloud Practitioner - AWS',
+        stage: '2024',
       },
       {
         title: 'ITF+ - CompTIA',
         stage: '2022',
       },
       {
-        title: 'Certified Cloud Practitioner - AWS',
-        stage: '2024',
+        title: 'Associate Degree - Oklahoma City Community College',
+        stage: '2020',
+      },
+      {
+        title: 'Honors Diploma - Blanchard High School',
+        stage: '2016',
       },
     ],
   },

@@ -1,5 +1,5 @@
 import { SiNextdotjs, SiDjango, SiMysql, SiPostgresql, SiSqlite, SiSelenium, SiPytest, SiJunit5, SiTailwindcss } from 'react-icons/si';
-import { FaHtml5, FaCss3, FaJs, FaReact, FaPython, FaJava, FaGitAlt, FaBootstrap, FaAws } from 'react-icons/fa';
+import { FaHtml5, FaCss3, FaJs, FaReact, FaPython, FaJava, FaGitAlt, FaBootstrap, FaAws, FaFlask } from 'react-icons/fa';
 import Circles from '../../components/Circles';
 import Avatar from '../../components/Avatar';
 import { fadeIn } from '../../variants';
@@ -17,7 +17,7 @@ const aboutData = [
       },
       {
         title: 'Back-End Development',
-        icons: [<FaPython />, <FaJava />, <SiDjango />],
+        icons: [<FaPython />, <FaJava />, <SiDjango />, <FaFlask />],
       },
       {
         title: 'Database Development',
@@ -48,11 +48,27 @@ const aboutData = [
         title: 'QA Full Stack Developer - Revature',
         stage: '2022 - 2023',
       },
+      {
+        title: 'Assembly Technician - National Assemblers Inc.',
+        stage: '2021 - 2022',
+      },
+      {
+        title: 'Assistant Ops Manager - Little Guys Movers',
+        stage: '2017 - 2020',
+      },
     ],
   },
   {
     title: 'credentials',
     info: [
+      {
+        title: 'Honors Diploma - Blanchard High School',
+        stage: '2016',
+      },
+      {
+        title: 'Associate Degree - Oklahoma City Community College',
+        stage: '2020',
+      },
       {
         title: 'ITF+ - CompTIA',
         stage: '2022',

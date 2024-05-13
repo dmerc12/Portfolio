@@ -1,6 +1,6 @@
 import { Particles } from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
 import React, { useCallback } from 'react';
+import { loadFull } from 'tsparticles';
 
 const ParticlesContainer = () => {
   const particlesInit = useCallback(async (engine) => {
@@ -9,21 +9,21 @@ const ParticlesContainer = () => {
 
   const particlesLoaded = useCallback(async () => {}, []);
 
-  
+
   return (
-    <Particles id='tsparticles' init={particlesInit} loaded={particlesLoaded} 
-      options={{ 
-        fullScreen: {enable: false}, 
-        background: { 
-          color: { 
+    <Particles id='tsparticles' init={particlesInit} loaded={particlesLoaded}
+      options={{
+        fullScreen: {enable: false},
+        background: {
+          color: {
             value: ''
           },
-        }, 
-        fpsLimit: 120, 
-        interactivity: { 
+        },
+        fpsLimit: 120,
+        interactivity: {
           events: {
-            onClick: { 
-              enable: false, 
+            onClick: {
+              enable: false,
               mode: 'push'
             },
             onHover: {

@@ -1,3 +1,4 @@
+import ParticlesContainer from '../../components/ParticlesContainer';
 import WorkSlider from '../../components/WorkSlider';
 import Circles from '../../components/Circles';
 import Bulb from '../../components/Bulb';
@@ -7,6 +8,7 @@ import { motion } from 'framer-motion';
 const Work = () => {
   return (
     <div className='h-full bg-primary/30 py-36 flex items-center'>
+      <ParticlesContainer />
       <Circles />
       <div className='container mx-auto'>
         <div className='flex flex-col xl:flex-row gap-x-8'>

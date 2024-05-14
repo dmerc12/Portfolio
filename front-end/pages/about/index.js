@@ -1,5 +1,6 @@
 import { SiNextdotjs, SiDjango, SiMysql, SiPostgresql, SiSqlite, SiSelenium, SiPytest, SiJunit5, SiTailwindcss } from 'react-icons/si';
 import { FaHtml5, FaCss3, FaJs, FaReact, FaPython, FaJava, FaGitAlt, FaBootstrap, FaAws, FaFlask } from 'react-icons/fa';
+import ParticlesContainer from '../../components/ParticlesContainer';
 import Circles from '../../components/Circles';
 import Avatar from '../../components/Avatar';
 import { fadeIn } from '../../variants';
@@ -86,6 +87,7 @@ const About = () => {
 
   return (
     <div className='h-full bg-primary/30 py-32 text-center xl:text-left'>
+      <ParticlesContainer />
       <Circles />
       <motion.div variants={fadeIn('right', 0.2)} initial='hidden' animate='show' exit='hidden' className='hidden xl:flex absolute bottom-0 -left-[370px]'>
         <Avatar />

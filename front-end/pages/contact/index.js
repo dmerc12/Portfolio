@@ -6,8 +6,8 @@ import { motion } from 'framer-motion';
 
 const Contact = () => {
   return (
-    <div className='h-full bg-primary/30'>
-      <div className='container mx-auto py-32 text-center xl:text-left flex items-center justify-center h-full'>
+    <div className='h-full bg-primary/30 my-12 overflow-auto'>
+      <div className='container mx-auto py-32 text-center xl:text-left flex items-center justify-center'>
         <div className='flex flex-col w-full max-w-[700px]'>
           <Circles />
           <motion.div variants={fadeIn('right', 0.2)} initial='hidden' animate='show' exit='hidden' className='hidden xl:flex absolute bottom-0 -left-[370px]'>
@@ -31,6 +31,7 @@ const Contact = () => {
                 <BsArrowRight  className='-translate-y-[120%] opacity-0 group-hover:flex group-hover:-translate-y-0 group-hover:opacity-100 transition-all duration-300 absolute text-[22px]'/>
               </button>
             </div>
+            <div className=''></div>
           </motion.form>
         </div>
       </div>

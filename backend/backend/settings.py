@@ -38,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'contact.appss.ContactConfig',
-    'credential.appss.CredentialConfig',
-    'experience.appss.ExperienceConfig',
-    'project.appss.ProjectConfig',
-    'skill.appss.SkillConfig',
+    'contact.apps.ContactConfig',
+    'credential.apps.CredentialConfig',
+    'experience.apps.ExperienceConfig',
+    'project.apps.ProjectConfig',
+    'skill.apps.SkillConfig',
 ]
 
 MIDDLEWARE = [

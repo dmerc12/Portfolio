@@ -1,7 +1,15 @@
 from django.http import JsonResponse
 from contact.models import Contact
+from django.views.decorators.csrf import csrf_exempt
+
+from django.middleware.csrf import get_token
+
+def get_csrf_token(request):
+    csrf_token = get_token(request)
+    return JsonResponse({'csrfToken': csrf_token})
 
 # Contact view
+# @csrf_exempt
 def contact(request):
     if request.method == 'POST':
         ## Get data from fields
@@ -31,6 +39,11 @@ def contact(request):
             errors['subject'] = 'Subject is required'
         if not message:
             errors['message'] = 'Message is required'
+
+        ## Respond for errors
+        if errors:
+            response = {'errors': errors}
+            return JsonResponse(response, status=422)
 
         ## Check legth requirerments on fields
         if len(first_name) > 100:

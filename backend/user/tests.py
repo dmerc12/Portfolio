@@ -36,7 +36,6 @@ class TestUsersForms(TestCase):
         self.assertIn('first_name', form.fields.keys())
         self.assertIn('last_name', form.fields.keys())
         self.assertIn('email', form.fields.keys())
-        self.assertIn('phone_number', form.fields.keys())
 
     ### Test edit user form validation with empty fields
     def test_edit_user_form_validation_empty_fields(self):
@@ -45,7 +44,6 @@ class TestUsersForms(TestCase):
             'first_name': '',
             'last_name': '',
             'email': '',
-            'phone_number': '',
         }
         form = EditUserForm(data=data)
         self.assertFalse(form.is_valid())
@@ -53,7 +51,6 @@ class TestUsersForms(TestCase):
         self.assertIn('first_name', form.errors)
         self.assertIn('last_name', form.errors)
         self.assertIn('email', form.errors)
-        self.assertIn('phone_number', form.errors)
 
     ### Test edit user form validation with fields too long
     def test_edit_user_form_validation_fields_too_long(self):
@@ -62,7 +59,6 @@ class TestUsersForms(TestCase):
             'first_name': 'test' * 50,
             'last_name': 'test' * 50,
             'email': 'test' * 50 + '@email.com',
-            'phone_number': '1' * 16,
         }
         form = EditUserForm(data=data)
         self.assertFalse(form.is_valid())
@@ -70,7 +66,6 @@ class TestUsersForms(TestCase):
         self.assertIn('first_name', form.errors)
         self.assertIn('last_name', form.errors)
         self.assertIn('email', form.errors)
-        self.assertIn('phone_number', form.errors)
 
     ### Test edit user form validation with invalid email
     def test_edit_user_form_validation_invalid_email(self):
@@ -79,7 +74,6 @@ class TestUsersForms(TestCase):
             'first_name': 'test',
             'last_name': 'test',
             'email': 'incorrect format',
-            'phone_number': '1-123-123-1234'
         }
         form = EditUserForm(data=data)
         self.assertIn('email', form.errors)
@@ -91,7 +85,6 @@ class TestUsersForms(TestCase):
             'first_name': 'test',
             'last_name': 'test',
             'email': 'test@email.com',
-            'phone_number': '1-123-123-1234'
         }
         form = EditUserForm(data=data)
         self.assertTrue(form.is_valid())
@@ -201,6 +194,8 @@ class TestUsersViews(TestCase):
         response = self.client.get(reverse('edit-user'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('login'))
+        messages = [message.message for message in get_messages(response.wsgi_request)]
+        self.assertIn(f"You must be a site admin to access this page!", messages)
 
     ### Test edit user view rendering success
     def test_edit_user_view_rendering_success(self):
@@ -235,6 +230,8 @@ class TestUsersViews(TestCase):
         response = self.client.get(reverse('change-password'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('login'))
+        messages = [message.message for message in get_messages(response.wsgi_request)]
+        self.assertIn(f"You must be a site admin to access this page!", messages)
 
     ### Test change password view rendering success
     def test_change_password_view_rendering_success(self):

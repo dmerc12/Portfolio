@@ -9,7 +9,6 @@ class Contact(models.Model):
     subject = models.CharField(max_length=250)
     message = models.CharField(max_length=500)
     created = models.DateTimeField(auto_now_add=True)
-    read = models.BooleanField(default=False)
     responded = models.BooleanField(default=False)
 
     def __str__(self):

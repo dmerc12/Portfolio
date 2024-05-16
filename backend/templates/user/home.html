@@ -16,15 +16,15 @@
     </div>
 </header>
 <main>
-    <div class="row d-flex justify-content-center align-items-center ml-3">
-        <div class="col-sm-4 col-md-2">
+    <div class="row d-flex justify-content-center align-items-center ml-3 mr-3">
+        <div class="col-sm-4 col-md-3">
             <div class="card mb-3 d-flex align-items-center justify-content-center text-center">
                 <div class="card-body">
                     <div class="d-flex justify-space-between align-items-center mb-1">
                         <h5 class="card-title text-center mx-auto">Messages</h5>
                         <p class="card-text ml-1 mx-auto" data-toggle="tooltip" data-placement="top" title="View and manage all messages here. View all messages by clicking 'View Messages'."><i class="fa fa-info-circle" aria-hidden="true"></i></p>
                     </div>
-                    <a href="#" class="btn btn-secondary">View Messages</a>
+                    <a href="{% url 'contact-home' %}" class="btn btn-secondary">View Messages</a>
                 </div>
             </div>
         </div>

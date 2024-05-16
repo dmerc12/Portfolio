@@ -5,9 +5,10 @@ import { BsArrowRight } from 'react-icons/bs';
 import Avatar from '../../components/Avatar';
 import { fadeIn } from '../../variants';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Contact = () => {
+  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     first_name: '',
@@ -17,6 +18,51 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+
+  const phoneInputRef = useRef(null);
+
+  useEffect(() => {
+    const phoneNumberInput = phoneInputRef.current;
+
+    const formatPhoneNumber = (phoneNumber) => {
+      let formattedPhoneNumber = '';
+      // Add country code if available
+      if (phoneNumber.length > 10) {
+        formattedPhoneNumber += phoneNumber.substring(0, phoneNumber.length - 10) + '-';
+        phoneNumber = phoneNumber.substring(phoneNumber.length - 10);
+      }
+      // Add area code
+      if (phoneNumber.length >= 4) {
+        formattedPhoneNumber += phoneNumber.substring(0, 3) + '-';
+        phoneNumber = phoneNumber.substring(3);
+      }
+      // Add remaining numbers with dashes
+      if (phoneNumber.length > 3) {
+        formattedPhoneNumber += phoneNumber.substring(0, 3) + '-';
+        phoneNumber = phoneNumber.substring(3);
+      }
+      // Add the rest of the number
+      formattedPhoneNumber += phoneNumber;
+
+      return formattedPhoneNumber;
+    };
+
+    const handleInput = () => {
+      const phoneNumber = phoneNumberInput.value.replace(/\D/g, '');
+      const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+      setFormattedPhoneNumber(formattedPhoneNumber)
+    };
+
+    if (phoneNumberInput) {
+      phoneNumberInput.addEventListener('input', handleInput);
+    }
+
+    return () => {
+      if (phoneNumberInput) {
+        phoneNumberInput.removeEventListener('input', handleInput);
+      }
+    };
+  }, []);
 
   const handleChange = (event) => {
     setFormData({
@@ -32,15 +78,21 @@ const Contact = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const completeFormData = {
+        ...formData,
+        phone_number: formattedPhoneNumber
+      };
+
       const response = await fetch('http://127.0.0.1:8000/contact/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(formData)
+        body: JSON.stringify(completeFormData)
       });
 
       if (response.status === 201) {
         const apiResponse = await response.json();
-        form =
+        setFormData({first_name: '', last_name: '', phone_number: '', email: '', subject: '', message: ''})
+        setFormattedPhoneNumber('')
         toast.success(apiResponse.message, {position: 'top-center', autoClose: 3000});
       } else if (response.status === 400) {
         const apiResponse = await response.json();
@@ -80,7 +132,7 @@ const Contact = () => {
             </div>
             <div className='flex gap-x-6 w-full'>
               <div className='flex flex-col w-1/2'>
-                <input required type='text' placeholder='phone number' className='input' name='phone_number' onChange={handleChange} value={formData.phone_number} />
+                <input required type='text' placeholder='phone number' className='input' name='phone_number' ref={phoneInputRef} onChange={(event) => {setFormattedPhoneNumber(event.target.value)}} value={formattedPhoneNumber} />
                 {errors.phone_number && (
                   <div className='text-red-500 text-center pt-4'>{errors.phone_number}</div>
                 )}

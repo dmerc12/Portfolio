@@ -5,7 +5,7 @@ import { BsArrowRight } from 'react-icons/bs';
 import Avatar from '../../components/Avatar';
 import { fadeIn } from '../../variants';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const Contact = () => {
   const [errors, setErrors] = useState({});
@@ -17,14 +17,6 @@ const Contact = () => {
     subject: '',
     message: ''
   });
-
-  useEffect(() => {
-    async function fetchCSRFToken() {
-      const response = await fetch('http://127.0.0.1:8000/contact/get_csrf_token/');
-      const { csrfToken } = await response.json();
-    }
-    fetchCSRFToken();
-  }, []);
 
   const handleChange = (event) => {
     setFormData({
@@ -42,16 +34,17 @@ const Contact = () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/contact/', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrfToken},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)
       });
 
       if (response.status === 201) {
-        toast.success(response.message, {position: 'top-center', autoClose: 3000});
-      } else if (response.status === 422) {
-        setErrors(response.errors);
-      } else if (response.status === 403) {
-        toast.warn(response.error, {position: 'top-center', autoClose: 3000});
+        const apiResponse = await response.json();
+        form =
+        toast.success(apiResponse.message, {position: 'top-center', autoClose: 3000});
+      } else if (response.status === 400) {
+        const apiResponse = await response.json();
+        setErrors(apiResponse);
       } else {
         toast.error('Cannot connect to the back-end, please try again later.', {position: 'top-center', autoClose: 3000});
       }
@@ -72,33 +65,45 @@ const Contact = () => {
           <ToastContainer />
           <motion.form variants={fadeIn('up', 0.4)} initial='hidden' animate='show' exit='hidden' onSubmit={handleSubmit} className='flex-1 flex flex-col gap-6 w-full mx-auto'>
             <div className='flex gap-x-6 w-full'>
-              <input type='text' placeholder='first name' className='input' name='first_name' onChange={handleChange} value={formData.first_name} />
-              {errors.first_name && (
-                <div className='text-red-500'>{errors.first_name}</div>
-              )}
-              <input type='text' placeholder='last name' className='input' name='last_name' onChange={handleChange} value={formData.last_name} />
-              {errors.last_name && (
-                <div className='text-red-500'>{errors.last_name}</div>
-              )}
+              <div className='flex flex-col w-1/2'>
+                <input required type='text' placeholder='first name' className='input' name='first_name' onChange={handleChange} value={formData.first_name} />
+                {errors.first_name && (
+                  <div className='text-red-500 text-center pt-4'>{errors.first_name}</div>
+                )}
+              </div>
+              <div className='flex flex-col w-1/2'>
+                <input required type='text' placeholder='last name' className='input' name='last_name' onChange={handleChange} value={formData.last_name} />
+                {errors.last_name && (
+                  <div className='text-red-500 text-center pt-4'>{errors.last_name}</div>
+                )}
+              </div>
             </div>
             <div className='flex gap-x-6 w-full'>
-              <input type='text' placeholder='phone number' className='input' name='phone_number' onChange={handleChange} value={formData.phone_number} />
-              {errors.phone_number && (
-                <div className='text-red-500'>{errors.phone_number}</div>
-              )}
-              <input type='email' placeholder='email' className='input' name='email' onChange={handleChange} value={formData.email}/>
-              {errors.email && (
-                <div className='text-red-500'>{errors.email}</div>
+              <div className='flex flex-col w-1/2'>
+                <input required type='text' placeholder='phone number' className='input' name='phone_number' onChange={handleChange} value={formData.phone_number} />
+                {errors.phone_number && (
+                  <div className='text-red-500 text-center pt-4'>{errors.phone_number}</div>
+                )}
+              </div>
+              <div className='flex flex-col w-1/2'>
+                <input required type='email' placeholder='email' className='input' name='email' onChange={handleChange} value={formData.email}/>
+                {errors.email && (
+                  <div className='text-red-500 text-center pt-4'>{errors.email}</div>
+                )}
+              </div>
+            </div>
+            <div className='flex flex-col'>
+              <input required type='text' placeholder='subject' className='input' name='subject' onChange={handleChange} value={formData.subject} />
+              {errors.subject && (
+                <div className='text-red-500 text-center pt-4'>{errors.subject}</div>
               )}
             </div>
-            <input type='text' placeholder='subject' className='input' name='subject' onChange={handleChange} value={formData.subject} />
-            {errors.subject && (
-              <div className='text-red-500'>{errors.subject}</div>
-            )}
-            <textarea placeholder='message' className='textarea' name='message' onChange={handleChange} value={formData.message}></textarea>
-            {errors.first_name && (
-              <div className='text-red-500'>{errors.message}</div>
-            )}
+            <div className='flex flex-col'>
+              <textarea required placeholder='message' className='textarea' name='message' onChange={handleChange} value={formData.message}></textarea>
+              {errors.first_name && (
+                <div className='text-red-500 text-center pt-4'>{errors.message}</div>
+              )}
+            </div>
             <div className='mx-auto'>
               <button className='btn rounded-full border border-white/50 max-w-[170px] px-8 transition-all duration-300 flex items-center justify-center overflow-hidden hover:border-accent group'>
                 <span className='group-hover:-translate-y-[120%] groupp-hover:opacity-0 transition-all duration-500'>Let's talk</span>

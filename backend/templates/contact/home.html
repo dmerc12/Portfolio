@@ -8,7 +8,7 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
                 <div class="text-center my-5">
-                    <h1 class="display-5 fw-bolder mb-2">143 Custom Designs Messsages Home</h1>
+                    <h1 class="display-5 fw-bolder mb-2">143 Custom Designs Messages Home</h1>
                     <p class="text-primary mb-4">Here you can manage the site by managing current messages. Manage the current messages with the Note Response, Responded, and Delete buttons.</p>
                 </div>
             </div>
@@ -41,6 +41,7 @@
                             <th>Subject</th>
                             <th>Message</th>
                             <th>Created</th>
+                            <th>Edited</th>
                             <th>Responded</th>
                             <th>Delete</th>
                         </tr>
@@ -55,6 +56,7 @@
                             <th>Subject</th>
                             <th>Message</th>
                             <th>Created</th>
+                            <th>Edited</th>
                             <th>Responded</th>
                             <th>Delete</th>
                         </tr>
@@ -70,10 +72,11 @@
                                 <td>{{ contact.subject }}</td>
                                 <td>{{ contact.message }}</td>
                                 <td>{{ contact.created }}</td>
+                                <td>{{ contact.edited }}</td>
                                 {% if contact.responded == True %}
                                     <td><a class="btn btn-success" href="{% url 'mark-response' contact.pk %}">Responded</a></td>
                                 {% else %}
-                                    <td><a class="btn btn-info" href="{% url 'mark-response' contact.pk %}">Note Response</a></td>
+                                    <td><a class="btn btn-primary" href="{% url 'mark-response' contact.pk %}">Note Response</a></td>
                                 {% endif %}
                                 <td><a class="btn btn-danger" href="{% url 'delete-contact' contact.pk %}">Delete</a></td>
                             </tr>

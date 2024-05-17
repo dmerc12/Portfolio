@@ -9,6 +9,7 @@ class Contact(models.Model):
     subject = models.CharField(max_length=250)
     message = models.CharField(max_length=500)
     created = models.DateTimeField(auto_now_add=True)
+    edited = models.DateTimeField(auto_now=True)
     responded = models.BooleanField(default=False)
 
     def __str__(self):

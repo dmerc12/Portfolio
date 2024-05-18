@@ -1,0 +1,22 @@
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="{% url 'contact-home' %}">Dylan Mercer's Portfolio</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <!-- Navbar-->
+    {% if user.is_authenticated %}
+    <div>
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 right-6">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a id="navUpdateUserButton" class="dropdown-item" href="{% url 'edit-user' %}">Edit Information</a></li>
+                    <li><a id="navChangePasswordButton" class="dropdown-item" href="{% url 'change-password' %}">Change Password</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a id="navLogoutButton" class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    {% endif %}
+</nav>

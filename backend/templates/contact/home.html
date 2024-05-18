@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+{% block title %}
+<title>Messages Dashboard</title>
+{% endblock title %}
+{% block content %}
+<header class="bg-light py-5 mb-2">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder mb-2">Messages Dashboard</h1>
+                    <p class="text-primary mb-4">Here you can manage the site by managing current messages. Manage the current messages with the Note Response, Responded, and Delete buttons.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Messages</h1>
+        {% comment %} <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active">Messages</li>
+        </ol> {% endcomment %}
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-table me-1"></i>
+                    Messages
+                </div>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Created</th>
+                            <th>Edited</th>
+                            <th>Responded</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Created</th>
+                            <th>Edited</th>
+                            <th>Responded</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for contact in contacts %}
+                            <tr>
+                                <td>MESS{{ contact.pk }}</td>
+                                <td>{{ contact.first_name }}</td>
+                                <td>{{ contact.last_name }}</td>
+                                <td>{{ contact.email }}</td>
+                                <td>{{ contact.phone_number }}</td>
+                                <td>{{ contact.subject }}</td>
+                                <td>{{ contact.message }}</td>
+                                <td>{{ contact.created }}</td>
+                                <td>{{ contact.edited }}</td>
+                                {% if contact.responded == True %}
+                                    <td><a class="btn btn-success" href="{% url 'mark-response' contact.pk %}">Responded</a></td>
+                                {% else %}
+                                    <td><a class="btn btn-primary" href="{% url 'mark-response' contact.pk %}">Note Response</a></td>
+                                {% endif %}
+                                <td><a class="btn btn-danger" href="{% url 'delete-contact' contact.pk %}">Delete</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

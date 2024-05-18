@@ -4,14 +4,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-# View for home page
-def home(request):
-    if request.user.is_authenticated:
-        return render(request, 'user/home.html')
-    else:
-        messages.error(request, 'You must be a site admin to access this page!')
-        return redirect('login')
-
 # View for login page
 def login_user(request):
     if request.method == 'POST':
@@ -23,7 +15,7 @@ def login_user(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f'Welcome {user.first_name} {user.last_name}!')
-                return redirect('home')
+                return redirect('contact-home')
             else:
                 messages.error(request, 'Incorrect username or password, please try again!')
     else:
@@ -46,7 +38,7 @@ def edit_user(request):
                 form.save()
                 login(request, user)
                 messages.success(request, 'Information successfully edited!')
-                return redirect('home')
+                return redirect('contact-home')
         else:
             form = EditUserForm(instance=user)
         return render(request, 'user/edit.html', {'form': form})
@@ -63,7 +55,7 @@ def change_password(request):
                 form.save()
                 login(request, request.user)
                 messages.success(request, 'Password successfully changed!')
-                return redirect('home')
+                return redirect('contact-home')
         else:
             form = ChangePasswordForm(request.user)
         return render(request, 'user/change-password.html', {'form': form})

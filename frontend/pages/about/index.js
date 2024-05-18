@@ -84,6 +84,13 @@ const aboutData = [
 const About = () => {
   const [index, setIndex] = useState(0);
 
+  // Calculate the years of experience dynamically
+  const startYear = 2021;
+  const currentYear = new Date().getFullYear();
+  const yearsOfExperience = currentYear - startYear;
+  const satisfiedClients = 5;
+  const finishedProjects = 10;
+
   return (
     <div className='h-full bg-primary/30 py-32 text-center xl:text-left overflow-auto'>
       <Circles />
@@ -100,19 +107,19 @@ const About = () => {
               <div className='flex flex-1 xl:gap-x-6'>
                 <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0'>
                   <div className='text-2xl xl:text-4xl front-extrabold text-accent mb-2'>
-                    <CountUp start={0} end={4} duration={5} /> +
+                    <CountUp start={0} end={yearsOfExperience} duration={5} /> +
                   </div>
                   <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>Years of experience</div>
                 </div>
                 <div className='relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0'>
                   <div className='text-2xl xl:text-4xl front-extrabold text-accent mb-2'>
-                    <CountUp start={0} end={5} duration={5} /> +
+                    <CountUp start={0} end={satisfiedClients} duration={5} /> +
                   </div>
                   <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>Satisfied clients</div>
                 </div>
                 <div className='relative flex-1'>
                   <div className='text-2xl xl:text-4xl front-extrabold text-accent mb-2'>
-                    <CountUp start={0} end={10} duration={5} /> +
+                    <CountUp start={0} end={finishedProjects} duration={5} /> +
                   </div>
                   <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>Finished projects</div>
                 </div>

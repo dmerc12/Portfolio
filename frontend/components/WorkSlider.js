@@ -1,6 +1,5 @@
-// file needs to be altered to take dynamic data from back end
-import { BsArrowRight } from 'react-icons/bs';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { BsArrowRight } from 'react-icons/bs';
 import { Pagination } from 'swiper';
 import Image from 'next/image';
 import 'swiper/css/pagination';
@@ -39,9 +38,7 @@ const workSlides = {
 
 const WorkSlider = () => {
   return (
-    <Swiper spaceBetween={5} pagination={{
-      clickable: true
-    }} modules={[Pagination]} className='h-[280px] sm:h-[480px]'>
+    <Swiper spaceBetween={5} pagination={{ clickable: true }} modules={[Pagination]} className='h-[280px] sm:h-[480px]'>
       {workSlides.slides.map((slide, index) => {
         return (
           <SwiperSlide key={index}>

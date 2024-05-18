@@ -156,7 +156,7 @@ class TestUsersViews(TestCase):
         data = {'username': user.username, 'password': 'pass12345'}
         response = self.client.post(reverse('login'), data=data)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('home'))
+        self.assertRedirects(response, reverse('contact-home'))
         messages = [message.message for message in get_messages(response.wsgi_request)]
         self.assertIn(f'Welcome {user.first_name} {user.last_name}!', messages)
 
@@ -170,23 +170,6 @@ class TestUsersViews(TestCase):
         self.assertRedirects(response, reverse('login'))
         messages = [message.message for message in get_messages(response.wsgi_request)]
         self.assertIn('Goodbye!', messages)
-
-    ## Tests for admin home
-    ### Test for admin home redirect
-    def test_admin_home_redirect(self):
-        response = self.client.get(reverse('home'))
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('login'))
-        messages = [message.message for message in get_messages(response.wsgi_request)]
-        self.assertIn('You must be a site admin to access this page!', messages)
-
-    ### Test for admin home rendering success
-    def test_admin_home_rendering_success(self):
-        user = User.objects.create_user(username='adminuser', password='pass12345', first_name='admin', last_name='admin', email='admin@email.com')
-        self.client.force_login(user)
-        response = self.client.get(reverse('home'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'user/home.html')
 
     ## Tests for edit user view
     ### Test edit user vew redirect
@@ -219,7 +202,7 @@ class TestUsersViews(TestCase):
         }
         response = self.client.post(reverse('edit-user'), data=data)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('home'))
+        self.assertRedirects(response, reverse('contact-home'))
         self.assertTrue(User.objects.filter(username=data['username']).exists())
         messages = [message.message for message in get_messages(response.wsgi_request)]
         self.assertIn(f"Information successfully edited!", messages)
@@ -252,6 +235,6 @@ class TestUsersViews(TestCase):
         }
         response = self.client.post(reverse('change-password'), data=data)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('home'))
+        self.assertRedirects(response, reverse('contact-home'))
         messages = [message.message for message in get_messages(response.wsgi_request)]
         self.assertIn(f"Password successfully changed!", messages)

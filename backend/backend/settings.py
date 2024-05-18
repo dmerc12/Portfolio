@@ -44,10 +44,6 @@ INSTALLED_APPS = [
     'toast.apps.ToastConfig',
     'user.apps.UserConfig',
     'contact.apps.ContactConfig',
-    'credential.apps.CredentialConfig',
-    'experience.apps.ExperienceConfig',
-    'project.apps.ProjectConfig',
-    'skill.apps.SkillConfig',
 ]
 
 MIDDLEWARE = [

@@ -29,7 +29,7 @@
                     Projects
                 </div>
                 <div>
-                    {% comment %} <a id="addProjectNavigation" class="btn btn-success" href="{% url 'add-project' %}">Add Project</a> {% endcomment %}
+                    <a id="addProjectNavigation" class="btn btn-success" href="{% url 'add-project' %}">Add Project</a>
                 </div>
             </div>
             <div class="card-body">
@@ -66,7 +66,7 @@
                                 <td>MESS{{ project.pk }}</td>
                                 <td>{{ project.title }}</td>
                                 <td>{{ project.image_preview }}</td>
-                                <td>{{ project.repo }}</td>
+                                <td><a class="btn btn-secondary" href="{{ project.repo }}">Visit</a></td>
                                 <td>{{ project.demo }}</td>
                                 <td>{{ project.created }}</td>
                                 <td>{{ project.edited }}</td>
@@ -82,4 +82,10 @@
         </div>
     </div>
 </main>
+<style>
+    table, th, td {
+        padding: 5px;
+        text-align: center;
+    }
+</style>
 {% endblock content %}

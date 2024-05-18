@@ -98,3 +98,38 @@ class TestProjectViews(TestCase):
         response = self.client.get(reverse('project-home'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'project/home.html')
+
+     ## Tests for add project view
+    ### Test add project view redirect
+    def test_add_project_view_redirect(self):
+        response = self.client.get(reverse('add-project'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('login'))
+        messages = [message.message for message in get_messages(response.wsgi_request)]
+        self.assertIn('You must be a site admin to access this page!', messages)
+
+    ### Test add project view rendering success
+    def test_add_project_view_rendering_success(self):
+        base = User.objects.create(username='test', password='test', first_name='first', last_name='last', email='firstlast@email.com')
+        self.client.force_login(base)
+        response = self.client.get(reverse('add-project'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'project/create.html')
+        self.assertIsInstance(response.context['form'], ProjectForm)
+
+    ### Test add project view success
+    def test_add_project_view_success(self):
+        base = User.objects.create(username='test', password='test', first_name='first', last_name='last', email='firstlast@email.com')
+        self.client.force_login(base)
+        data = {
+            'title': 'title',
+            'thumbnail': SimpleUploadedFile(name='finance.png', content=open(find('finance.png'), 'rb').read(), content_type='image/png'),
+            'repo': 'test/repo.com',
+            'demo': ''
+        }
+        response = self.client.post(reverse('add-project'), data=data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('project-home'))
+        self.assertTrue(Project.objects.filter(title=data['title']).exists())
+        messages = [message.message for message in get_messages(response.wsgi_request)]
+        self.assertIn('Project successfully added!', messages)

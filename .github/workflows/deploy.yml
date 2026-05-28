@@ -18,7 +18,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependences
-        run: npm ci
+        run: cd portfolio && npm ci
 
       - name: Build static site
         run: npm run build

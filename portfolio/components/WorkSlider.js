@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { BsArrowRight } from 'react-icons/bs';
-import { Pagination } from 'swiper';
+import { Pagination } from 'swiper/modules';
 import Image from 'next/image';
 import 'swiper/css/pagination';
 import Link from 'next/link';

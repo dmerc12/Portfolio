@@ -26,9 +26,9 @@ const workSlides = {
           url: 'https://github.com/dmerc12/About-OK'
         },
         {
-          title: 'Finance Tracker',
-          path: '/finance-tracker.png',
-          url: 'https://github.com/dmerc12/Finance-Tracker'
+          title: 'Portfolio (This website)',
+          path: '/portfolio.png',
+          url: 'https://github.com/dmerc12/Portfolio'
         },
       ],
     },

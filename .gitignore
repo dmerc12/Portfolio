@@ -197,3 +197,4 @@ next-env.d.ts
 
 **/*/migrations/*
 **/*/media/*
+.idea/

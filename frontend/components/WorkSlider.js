@@ -6,30 +6,29 @@ import 'swiper/css/pagination';
 import Link from 'next/link';
 import 'swiper/css';
 
-// dummy-data
 const workSlides = {
   slides: [
     {
       images: [
         {
-          title: 'JARVIS',
-          path: '/jarvis.png',
-          url: 'https://github.com/dmerc12/JARVIS-MK1'
+          title: 'Oklahoma Handyman',
+          path: '/oklahoma-handyman.png',
+          url: 'https://github.com/theoklahomahandyman/the-oklahoma-handyman-service-website',
         },
         {
-          title: 'D\'s Finance',
-          path: '/finance.png',
-          url: 'https://github.com/dmerc12/FinancialTrackingApp'
+          title: 'Bear Points',
+          path: '/bearpoints.png',
+          url: 'https://github.com/dmerc12/BearPoints'
         },
         {
-          title: '143 Designs',
-          path: '/coming-soon.png',
-          url: 'https://github.com/dmerc12/143Designs'
+          title: 'About OK',
+          path: '/about-ok.png',
+          url: 'https://github.com/dmerc12/About-OK'
         },
         {
-          title: 'The Swiss Tracker',
-          path: '/coming-soon.png',
-          url: 'https://github.com/dmerc12/BankingApp'
+          title: 'Portfolio (This website)',
+          path: '/portfolio.png',
+          url: 'https://github.com/dmerc12/Portfolio'
         },
       ],
     },
@@ -38,7 +37,7 @@ const workSlides = {
 
 const WorkSlider = () => {
   return (
-    <Swiper spaceBetween={5} pagination={{ clickable: true }} modules={[Pagination]} className='h-[280px] sm:h-[480px]'>
+    <Swiper spaceBetween={5} pagination={{ clickable: true }} modules={[Pagination]} className='h-[640px] sm:h-[720px]'>
       {workSlides.slides.map((slide, index) => {
         return (
           <SwiperSlide key={index}>

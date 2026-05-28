@@ -9,8 +9,15 @@ const Home = () => {
     <div className='bg-primary/60 h-full'>
       <div className='w-full h-full bg-gradient-to-r from-primary/10 via-black/30 to-black/10'>
         <div className='text-center flex flex-col justify-center xl:pt-40 xl:text-left h-full container mx-auto'>
-          <motion.h1 variants={fadeIn('down', 0.2)} initial='hidden' animate='show' exit='hidden' className='h1'>Hello There! <br/> I'm <span className='text-accent'>Dylan Mercer</span></motion.h1>
-          <motion.p variants={fadeIn('down', 0.3)} initial='hidden' animate='show' exit='hidden' className='max-w-sm xl:max-w-lx mx-auto xl:mx-0 mb-10 xl:mb-16'>I'm a full stack software developer comfortable wearing a multitude of different hats. Check out my projects or contact me to see if I may be a good fit for your project!</motion.p>
+          <motion.h1 variants={fadeIn('down', 0.2)} initial='hidden' animate='show' exit='hidden' className='h1'>
+              From <span className="text-accent">full-stack</span> to <br />
+              fourth grade and back.
+          </motion.h1>
+          <motion.p variants={fadeIn('down', 0.3)} initial='hidden' animate='show' exit='hidden' className='max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16'>
+              I build software that works — and explain it to humans who don't care about code.
+              Full-stack dev, enterprise helpdesk vet, and two-year classroom veteran.
+              Let's build something that makes sense.
+          </motion.p>
           <motion.div variants={fadeIn('down', 0.4)} initial='hidden' animate='show' exit='hidden' className='hidden xl:flex'>
             <ProjectsBtn />
           </motion.div>

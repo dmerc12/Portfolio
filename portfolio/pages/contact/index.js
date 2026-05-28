@@ -75,12 +75,12 @@ const Contact = () => {
       <div className='container mx-auto py-32 text-center xl:text-left flex items-center justify-center'>
         <div className='flex flex-col w-full max-w-[700px]'>
           <Circles />
-          <motion.div variants={fadeIn('right', 0.2)} initial='hidden' animate='show' exit='hidden' className='hidden xl:flex absolute bottom-0 -left-[370px]'>
+          <motion.div variants={fadeIn('right', 0.2)} initial='hidden' animate='show' exit='hidden' className='hidden xl:flex absolute bottom-0 -left-[370px] z-0 opacity-70'>
             <Avatar />
           </motion.div>
           <motion.h2 variants={fadeIn('up', 0.2)} initial='hidden' animate='show' exit='hidden' className='h2 text-center mb-12'>Let's <span className='text-accent'>connect.</span></motion.h2>
           <ToastContainer />
-          <motion.form variants={fadeIn('up', 0.4)} initial='hidden' animate='show' exit='hidden' onSubmit={handleSubmit} className='flex-1 flex flex-col gap-6 w-full mx-auto'>
+          <motion.form variants={fadeIn('up', 0.4)} initial='hidden' animate='show' exit='hidden' onSubmit={handleSubmit} className='flex-1 flex flex-col gap-6 w-full mx-auto z-10'>
             <div className='flex gap-x-6 w-full'>
               <div className='flex flex-col w-1/2'>
                 <input required type='text' placeholder='first name' className='input' name='first_name' onChange={handleChange} value={formData.first_name} />

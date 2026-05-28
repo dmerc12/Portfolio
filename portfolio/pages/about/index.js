@@ -117,10 +117,10 @@ const About = () => {
   return (
     <div className='h-full bg-primary/30 py-32 text-center xl:text-left overflow-auto'>
       <Circles />
-      <motion.div variants={fadeIn('right', 0.2)} initial='hidden' animate='show' exit='hidden' className='hidden xl:flex absolute bottom-0 -left-[370px]'>
+      <motion.div variants={fadeIn('right', 0.2)} initial='hidden' animate='show' exit='hidden' className='hidden xl:flex absolute bottom-0 -left-[720px] z-0 opacity-70'>
         <Avatar />
       </motion.div>
-      <motion.div>
+      <motion.div className=' relative z-10'>
         <div className='container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6 mt-[60px]'>
           <div className='flex-1 flex flex-col justify-center'>
             <motion.h2 variants={fadeIn('right', 0.2)} initial='hidden' animate='show' exit='hidden' className='h2'>

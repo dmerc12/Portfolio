@@ -15,7 +15,9 @@ const Layout = ({ children }) => {
       <TopLeftImg />
       <Nav />
       <Header />
-      { children }
+      <main className='relative h-full mb-3 mt-3 pb-2 pt-2'>
+          { children }
+      </main>
     </div>
   );
 };

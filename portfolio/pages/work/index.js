@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const Work = () => {
   return (
-    <div className='h-full bg-primary/30 py-36 flex items-center'>
+    <div className='h-full bg-primary/30 md:flex md:items-center pt-40 pb-24 md:py-36'>
       <ParticlesContainer />
       <Circles />
       <div className='container mx-auto'>

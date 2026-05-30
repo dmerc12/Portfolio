@@ -1,8 +1,6 @@
 name: Deploy to AWS S3 and invalidate CloudFront
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -41,6 +39,11 @@ jobs:
 
       - name: Build static site
         run: cd portfolio && npm run build
+
+      - name: Debug bucket name and test list with secret
+        run: |
+          echo "Bucket from secret: ${{ secrets.AWS_S3_BUCKET }}"
+          aws s3api list-objects-v2 --bucket ${{ secrets.AWS_S3_BUCKET }} --max-items 1
 
       - name: Sync  files to S3
         run: |

@@ -34,7 +34,7 @@ jobs:
 
       - name: Sync  files to S3
         run: |
-          aws s3 sync portfolio/out/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
+          aws s3 sync ./portfolio/out/ s3://${{ secrets.AWS_S3_BUCKET }}/ --delete
 
       - name: Create CloudFront invalidation
         run: |

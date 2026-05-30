@@ -2,8 +2,9 @@ name: Deploy to AWS S3 and invalidate CloudFront
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build-and-deploy:
@@ -25,6 +26,15 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Debug AWS permissions
+        run: |
+          echo "Caller identity:"
+          aws sts get-caller-identity
+          echo "Attempting to list objects in bucket dtm-portfolio:"
+          aws s3api list-objects-v2 --bucket dtm-portfolio --max-items 1 || echo "List failed"
+          echo "Attempting to list all buckets (should fail if not authorized):"
+          aws s3 ls || echo "List buckets failed"
 
       - name: Install dependences
         run: cd portfolio && npm ci

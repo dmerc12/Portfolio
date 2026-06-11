@@ -70,6 +70,10 @@ const aboutData = [
     title: 'credentials',
     info: [
       {
+        title: 'Bachelor of Science, Software Engineering - Western Governors University',
+        stage: '2026',
+      },
+      {
         title: 'Certified Back-End Developer - WGU',
         stage: '2026'
       },
@@ -94,7 +98,7 @@ const aboutData = [
         stage: '2022',
       },
       {
-        title: 'Associate Degree - Oklahoma City Community College',
+        title: 'Associate in Science, Business - Oklahoma City Community College',
         stage: '2020',
       },
       {

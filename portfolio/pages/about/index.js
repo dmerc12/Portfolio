@@ -70,7 +70,7 @@ const aboutData = [
     title: 'credentials',
     info: [
       {
-        title: 'Bachelor of Science, Software Engineering - Western Governors University',
+        title: 'Bachelor of Science, Software Engineering - WGU',
         stage: '2026',
       },
       {
@@ -98,7 +98,7 @@ const aboutData = [
         stage: '2022',
       },
       {
-        title: 'Associate in Science, Business - Oklahoma City Community College',
+        title: 'Associate in Science, Business - OCC',
         stage: '2020',
       },
       {
@@ -138,7 +138,7 @@ const About = () => {
               it's about adapting on the fly, whether that's debugging a production bug at 2 AM or explaining fractions to a room full of fourth graders.
             </motion.p>
             <motion.p variants={fadeIn('right', 0.6)} initial='hidden' animate='show' exit='hidden' className='max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0'>
-              The layoff in 2023 was a reset. I enrolled at WGU for my Software Engineering degree (expected June 2026)
+              The layoff in 2023 was a reset. I enrolled at Western Governors University for my Bachelor of Science in Software Engineering,
               and started treating every course project like a client deliverable.
               Meanwhile, I've spent two years substitute teaching across all grade levels, from kindergarten to 4th grade,
               often switching rooms mid-day.
